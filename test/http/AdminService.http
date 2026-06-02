@@ -1,0 +1,146 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Authors
+# @name Authors_GET
+GET {{server}}/admin/Authors
+Authorization: Basic {{username}}:{{password}}
+
+
+### Authors
+# @name Authors_POST
+POST {{server}}/admin/Authors
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 3739413,
+  "name": "name-3739413",
+  "createdAt": "2002-06-24T22:00:00.000Z",
+  "createdBy": "createdBy.285cl@example.com",
+  "modifiedAt": "2011-09-22T22:00:00.000Z",
+  "modifiedBy": "modifiedBy.285cl@example.net"
+}
+
+
+### Authors
+# @name Authors_PATCH
+PATCH {{server}}/admin/Authors/3739413
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 3739413,
+  "name": "name-3739413",
+  "createdAt": "2002-06-24T22:00:00.000Z",
+  "createdBy": "createdBy.285cl@example.com",
+  "modifiedAt": "2011-09-22T22:00:00.000Z",
+  "modifiedBy": "modifiedBy.285cl@example.net"
+}
+
+
+### Authors
+# @name Authors_DELETE
+DELETE {{server}}/admin/Authors/3739413
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Books
+# @name Books_GET
+GET {{server}}/admin/Books
+Authorization: Basic {{username}}:{{password}}
+
+### Books
+# @name Books_POST
+POST {{server}}/admin/Books
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 114133089,
+  "title": "title-4133089",
+  "descr": "descr-4133089",
+  "author": {
+    "ID": 12924470
+  },
+  "genre": {
+    "ID": 10340962
+  },
+  "stock": 65,
+  "price": 79.96,
+  "currency": {
+    "code": "378"
+  },
+  "createdAt": "2015-12-13T22:00:00.000Z",
+  "createdBy": "createdBy.2gl41@example.com",
+  "modifiedAt": "2011-06-13T22:00:00.000Z",
+  "modifiedBy": "modifiedBy.2gl41@example.net"
+}
+
+
+### Books
+# @name Books_PATCH
+PATCH {{server}}/admin/Books/114133089
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 114133089,
+  "title": "title-114133089",
+  "descr": "descr-114133089",
+  "author": {
+    "ID": 24705696
+  },
+  "genre": {
+    "ID": 23841376
+  },
+  "stock": 65,
+  "price": 79.96,
+  "currency": {
+    "code": "378"
+  },
+  "createdAt": "2015-12-13T22:00:00.000Z",
+  "createdBy": "createdBy.2gl41@example.com",
+  "modifiedAt": "2011-06-13T22:00:00.000Z",
+  "modifiedBy": "modifiedBy.2gl41@example.net"
+}
+
+
+### Books
+# @name Books_DELETE
+DELETE {{server}}/admin/Books/114133089
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Genres
+# @name Genres_GET
+GET {{server}}/admin/Genres
+Authorization: Basic {{username}}:{{password}}
+
+
+### Currencies
+# @name Currencies_GET
+GET {{server}}/admin/Currencies
+Authorization: Basic {{username}}:{{password}}
+
+### Orders
+# @name Orders_GET
+GET {{server}}/admin/Orders
+Authorization: Basic {{username}}:{{password}}
+
+### Orders
+# @name Orders_POST
+POST {{server}}/admin/Orders
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 34547563,
+  "name": "John Doe",
+  "book_ID": 30192811,
+  "amount": 1
+}
