@@ -142,5 +142,10 @@ Authorization: Basic {{username}}:{{password}}
   "ID": 34547563,
   "name": "John Doe",
   "book_ID": 30192811,
-  "amount": 1
+  "amount": 18
 }
+
+### Logs
+# @name Logs_GET
+GET {{server}}/admin/getStockLogs()
+Authorization: Basic {{username}}:{{password}}

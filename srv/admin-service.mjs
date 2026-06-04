@@ -52,6 +52,11 @@ export default cds.service.impl(async function () {
 
     return newOrder
   })
+
+  this.on('getStockLogs', async req => {
+    const history = await SELECT.from(Logs).orderBy('createdAt desc')
+    return history
+  })
 })
 
 cds.on('LowStockAlert', async msg => {

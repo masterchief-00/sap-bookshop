@@ -6,6 +6,8 @@ service AdminService @(odata: '/admin') {
     entity Genres  as projection on my.Genres;
     entity Orders  as projection on my.Orders;
     entity Logs    as projection on my.Logs;
+
+    function getStockLogs() returns array of Logs;
 }
 
 event LowStockAlert {
