@@ -8,6 +8,24 @@
 GET {{server}}/browse/Books
 Authorization: Basic {{username}}:{{password}}
 
+### Books
+# @name Books_POST
+POST {{server}}/browse/Books(ID=30192811)/reviews
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+    "ID":11192838,
+    "names":"John Doe",
+    "comment":"Book well written",
+    "rating":"4.7"
+}
+
+### Books
+# @name Books_reviews_GET
+GET {{server}}/browse/Books(ID=30192811)/reviews
+Authorization: Basic {{username}}:{{password}}
+
 
 ### Currencies
 # @name Currencies_GET

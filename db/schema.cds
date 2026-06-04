@@ -15,6 +15,7 @@ entity Books : managed {
         stock    : Integer;
         price    : Decimal;
         currency : Currency;
+        reviews  : Composition of many Reviews
 }
 
 entity Authors : managed {
@@ -34,4 +35,11 @@ entity Orders : managed {
         name   : String;
         amount : Integer;
         book   : Association to Books;
+}
+
+aspect Reviews : managed {
+    key ID      : Integer;
+        names   : String;
+        rating  : Decimal;
+        comment : String;
 }

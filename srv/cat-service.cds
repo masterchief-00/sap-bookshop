@@ -2,7 +2,7 @@ using {sap.capire.bookshop as my} from '../db/schema';
 
 service CatalogueService @(odata: '/browse') {
   @readonly
-  entity Books as
+  entity Books   as
     projection on my.Books {
       *,
       author.name as author,
@@ -12,4 +12,6 @@ service CatalogueService @(odata: '/browse') {
       createdBy,
       modifiedBy
     };
+
+  entity Reviews as projection on my.Books.reviews;
 }

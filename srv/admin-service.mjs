@@ -32,8 +32,6 @@ export default cds.service.impl(async function () {
       name: order.name
     })
 
-    console.log(newOrder)
-
     if (!newOrder) return req.reject(500, 'The order could not be created.')
 
     const updatedBook = await UPDATE(Books)
