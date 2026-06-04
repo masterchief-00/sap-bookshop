@@ -5,4 +5,11 @@ service AdminService @(odata: '/admin') {
     entity Books   as projection on my.Books;
     entity Genres  as projection on my.Genres;
     entity Orders  as projection on my.Orders;
+    entity Logs    as projection on my.Logs;
+}
+
+event LowStockAlert {
+    book_ID      : Integer;
+    title        : String;
+    currentStock : Integer;
 }

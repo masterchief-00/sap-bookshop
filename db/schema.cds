@@ -43,3 +43,11 @@ aspect Reviews : managed {
         rating  : Decimal;
         comment : String;
 }
+
+entity Logs {
+    key ID            : UUID;
+        createdAt     : Timestamp @cds.on.insert: $now; // Automatically timestamps the log
+        bookTitle     : String;
+        recordedStock : Integer;
+        triggeredBy   : String;
+}

@@ -14,4 +14,6 @@ service CatalogueService @(odata: '/browse') {
     };
 
   entity Reviews as projection on my.Books.reviews;
+
+  action submitOrder(bookId: Integer, quantity: Integer, name: String) returns String;
 }
