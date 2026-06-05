@@ -1,7 +1,8 @@
 {
   "devDependencies": {
-    "sqlite3": "^6.0.1",
-    "@cap-js/sqlite": "^2.4"
+    "@cap-js/sqlite": "^2.4",
+    "cds-plugin-ui5": "^0.13.6",
+    "sqlite3": "^6.0.1"
   },
   "cds": {
     "requires": {
@@ -19,7 +20,19 @@
     "@sap/cds": "^9"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-logs_gui": "cds watch --open ns.logsgui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-logs": "cds watch --open ns.logs/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-books": "cds watch --open ns.books/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
-  "private": true
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/logs_gui",
+    "app/logs",
+    "app/logs",
+    "app/books"
+  ]
 }
