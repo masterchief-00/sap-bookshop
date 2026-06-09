@@ -47,10 +47,14 @@ DELETE {{server}}/admin/Authors/3739413
 Content-Type: application/json
 Authorization: Basic {{username}}:{{password}}
 
-
 ### Books
 # @name Books_GET
 GET {{server}}/admin/Books
+Authorization: Basic {{username}}:{{password}}
+
+### Books
+# @name Book_GET
+GET {{server}}/admin/Books(ID=224133087)?$expand=reviews
 Authorization: Basic {{username}}:{{password}}
 
 ### Books
@@ -60,24 +64,32 @@ Content-Type: application/json
 Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": 114133089,
-  "title": "title-4133089",
-  "descr": "descr-4133089",
+  "ID": 224133087,
+  "title": "title-224133087",
+  "descr": "descr-224133087",
   "author": {
     "ID": 12924470
   },
   "genre": {
     "ID": 10340962
   },
-  "stock": 65,
-  "price": 79.96,
+  "stock": 13,
+  "price": 99.96,
   "currency": {
     "code": "378"
   },
   "createdAt": "2015-12-13T22:00:00.000Z",
   "createdBy": "createdBy.2gl41@example.com",
   "modifiedAt": "2011-06-13T22:00:00.000Z",
-  "modifiedBy": "modifiedBy.2gl41@example.net"
+  "modifiedBy": "modifiedBy.2gl41@example.net",
+  "reviews":[
+    {
+      "ID": 211192890,
+      "names": "John Doe",
+      "rating": 4.4,
+      "comment": "Good book"
+    }
+  ]
 }
 
 

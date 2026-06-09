@@ -17,8 +17,16 @@ annotate AdminService.Books with {
     stock  @assert.range: [
         (0),
         _
-    ]
+    ];
 }
+
+annotate AdminService.Books.reviews with {
+    rating @asser.range: [
+        1,
+        5
+    ]
+};
+
 
 annotate AdminService.Orders with {
     name   @mandatory  @assert.format: '^[A-Za-z. ]';

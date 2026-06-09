@@ -2,6 +2,7 @@ using {sap.capire.bookshop as my} from '../db/schema';
 
 service CatalogueService @(odata: '/browse') {
   @readonly
+  @odata.page.size: 20
   entity Books   as
     projection on my.Books {
       *,

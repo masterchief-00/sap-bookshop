@@ -115,13 +115,11 @@
                   }
                 }
               },
-              "controlConfiguration": {
-                "@com.sap.vocabularies.UI.v1.LineItem": {
-                  "tableSettings": {
+              "tableSettings": {
                     "type": "ResponsiveTable"
-                  }
-                }
-              }
+              },
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -139,6 +137,18 @@
                     "route": "Books_reviewsObjectPage"
                   }
                 }
+              },
+              "controlConfiguration": {
+                "reviews/@com.sap.vocabularies.UI.v1.LineItem#Reviews": {
+                  "tableSettings": {
+                    "personalization": {
+                      "column": false
+                    },
+                    "creationMode": {
+                      "name": "Inline"
+                    }
+                  }
+                }
               }
             }
           }
@@ -149,8 +159,8 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/Books/reviews"
+              "contextPath": "/Books/reviews",
+              "navigation": {}
             }
           }
         }

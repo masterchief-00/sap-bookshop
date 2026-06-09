@@ -5,12 +5,12 @@
 
 ### Books
 # @name Books_GET
-GET {{server}}/browse/Books
+GET {{server}}/browse/Books?$expand=reviews
 Authorization: Basic {{username}}:{{password}}
 
 ### Books
-# @name Books_POST
-POST {{server}}/browse/Books(ID=30192811)/reviews
+# @name Books_review_POST
+POST {{server}}/browse/Books(ID=30192840)/reviews
 Content-Type: application/json
 Authorization: Basic {{username}}:{{password}}
 
