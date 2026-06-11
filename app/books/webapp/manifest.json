@@ -116,7 +116,7 @@
                 }
               },
               "tableSettings": {
-                    "type": "ResponsiveTable"
+                "type": "ResponsiveTable"
               },
               "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
               "initialLoad": "Enabled"
