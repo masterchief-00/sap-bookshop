@@ -8,16 +8,14 @@
   "cds": {
     "requires": {
       "[production]": {
-        "auth": "xsuaa",
-        "multitenancy": true
+        "db":{
+          "kind":"hana-cloud"
+        },
+        "auth": "xsuaa"
       },
       "html5-repo": true,
-      "portal": true,
-      "[with-mtx]": {
-        "multitenancy": true
-      }
-    },
-    "profile": "with-mtx-sidecar"
+      "portal": true
+    }
   },
   "name": "sap-bookshop",
   "version": "1.0.0",
@@ -27,7 +25,6 @@
     "@sap-cloud-sdk/http-client": "^4.7.0",
     "@sap-cloud-sdk/resilience": "^4.7.0",
     "@sap/cds": "^9.9.1",
-    "@sap/cds-mtxs": "^3",
     "@sap/xssec": "^4"
   },
   "scripts": {

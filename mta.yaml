@@ -12,6 +12,14 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
+  - name: sap-bookshop-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: sap-bookshop-db
+
   - name: sap-bookshop-srv
     type: nodejs
     path: gen/srv
@@ -25,7 +33,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: sap-bookshop-auth
+      - name: sap-bookshop-auth-dedicated
       - name: sap-bookshop-db
   - name: sap-bookshop
     type: approuter.nodejs
@@ -41,20 +49,13 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
-      - name: sap-bookshop-auth
+      - name: sap-bookshop-auth-dedicated
       - name: sap-bookshop-html5-runtime
-      - name: mtx-api
-        group: destinations
-        properties:
-          name: mtx-api # must be used in xs-app.json as well
-          url: ~{mtx-url}
     provides:
       - name: app-api
         properties:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
-    properties:
-      TENANT_HOST_PATTERN: "^(.*)-${default-uri}"
 
   - name: sap-bookshop-app-deployer
     type: com.sap.application.content
@@ -71,7 +72,7 @@ modules:
             - logs.zip
           target-path: app/
     requires:
-      - name: sap-bookshop-auth
+      - name: sap-bookshop-auth-dedicated
       - name: srv-api
       - name: sap-bookshop-html5-repo-host
         parameters:
@@ -102,50 +103,16 @@ modules:
       supported-platforms:
         []
 
-  - name: sap-bookshop-mtx
-    type: nodejs
-    path: gen/mtx/sidecar
-    requires:
-      - name: sap-bookshop-auth
-      - name: sap-bookshop-db
-      - name: sap-bookshop-registry
-      - name: app-api
-        properties:
-          SUBSCRIPTION_URL: ~{app-protocol}://\${tenant_subdomain}-~{app-uri}
-      - name: sap-bookshop-html5-runtime
-      - name: sap-bookshop-html5-repo-host
-    build-parameters:
-      builder: npm-ci
-    parameters:
-      instances: 1
-      memory: 256M
-      disk-quota: 512M
-    hooks:
-      - name: upgrade-all
-        type: task
-        phases:
-          - blue-green.application.before-start.idle
-          - deploy.application.before-start
-        parameters:
-          name: upgrade
-          memory: 512M # increase as required
-          disk-quota: 768M # increase as required
-          command: cds-mtx upgrade '*'
-    provides:
-      - name: mtx-api
-        properties:
-          mtx-url: ${default-url}
-
 resources:
-  - name: sap-bookshop-auth
+  - name: sap-bookshop-auth-dedicated
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: sap-bookshop-${org}-${space}
-        tenant-mode: shared
+        xsappname: sap-bookshop-dedicated-${org}-${space}
+        tenant-mode: dedicated
         oauth2-configuration:
           credential-types:
             - "binding-secret"
@@ -168,25 +135,5 @@ resources:
   - name: sap-bookshop-db
     type: org.cloudfoundry.managed-service
     parameters:
-      service: service-manager
-      service-plan: container
-  - name: sap-bookshop-registry
-    type: org.cloudfoundry.managed-service
-    requires:
-      - name: mtx-api
-    parameters:
-      service: saas-registry
-      service-plan: application
-      config:
-        xsappname: sap-bookshop-${org}-${space}
-        appName: sap-bookshop-${org}-${space}
-        displayName: sap-bookshop
-        description: A simple CAP project.
-        category: 'Category'
-        appUrls:
-          getDependencies: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/dependencies
-          onSubscription: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/tenant/{tenantId}
-          onSubscriptionAsync: true
-          onUnSubscriptionAsync: true
-          onUpdateDependenciesAsync: true
-          callbackTimeoutMillis: 300000 # Increase if your deployments are taking longer than that
+      service: hana
+      service-plan: hdi-shared

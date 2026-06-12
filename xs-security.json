@@ -1,4 +1,5 @@
 {
+  "tenant-mode": "dedicated",
   "scopes": [
     {
       "name": "$XSAPPNAME.Admin",
@@ -7,15 +8,13 @@
     {
       "name": "$XSAPPNAME.User",
       "description": "User access"
-    },
-    {
-      "name": "$XSAPPNAME.mtcallback",
-      "description": "Subscription via SaaS Registry",
-      "grant-as-authority-to-apps": [
-        "$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
-      ]
     }
   ],
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "refresh-token-validity": 1800,
+    "credential-types": ["binding-secret", "x509"]
+  },
   "attributes": [],
   "role-templates": [
     {
